@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from flask_login import current_user, login_user, logout_user
 from app.models import CetlUser, Lecturer, User, Course, CourseSubmission, CourseSubmissionVersion, Queue, QueueItem
 from . import lecturer_blueprint
-from course_docx_generator.App.maker import writeDoc
+#from course_docx_generator.App.maker import writeDoc
 from app.database import db
 from werkzeug.utils import secure_filename
 import os
