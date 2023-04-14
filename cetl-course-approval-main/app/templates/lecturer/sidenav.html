@@ -1,0 +1,23 @@
+<!-- Sidenav should be in a col because of layout -->
+<div id="sidebar" class="p-0 m-0 collapse collapse-horizontal show border-end page-height-less-navbar bg-light" style="max-width: 15vw;">
+    <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start">
+        <a href="{{url_for('lecturer.dashboard')}}" class="list-group-item border-end-0 d-inline-block text-truncate  bg-light" data-bs-parent="#sidebar">
+            <i class="fa fa-lg fa-tachometer pl-4 pe-2" aria-hidden="true"></i>
+            <span class="d-none d-md-inline">Dashboard</span>
+        </a>
+        <a href="{{url_for('lecturer.course_outline')}}" class="list-group-item border-end-0 d-inline-block text-truncate  bg-light" data-bs-parent="#sidebar">
+            <i class="fa fa-lg fa-tachometer pl-4 pe-2" aria-hidden="true"></i>
+            <span class="d-none d-md-inline">Course Outlines</span>
+        </a>
+        <a href="{{url_for('lecturer.programme_outline')}}" class="list-group-item border-end-0 d-inline-block text-truncate  bg-light" data-bs-parent="#sidebar">
+            <i class="fa fa-lg fa-tachometer pl-4 pe-2" aria-hidden="true"></i>
+            <span class="d-none d-md-inline">Programme Outlines</span>
+        </a>
+        
+        <a href="{{url_for('login.logout_action')}}"
+            class="list-group-item border-end-0 d-inline-block text-truncate  bg-light mt-auto" data-bs-parent="#sidebar">
+            <i class="fa fa-lg fa-sign-out pl-4 pe-2" aria-hidden="true"></i>
+            <span class="d-none d-md-inline">Logout</span>
+        </a>
+    </div>
+</div>
