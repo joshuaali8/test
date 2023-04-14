@@ -1,0 +1,74 @@
+{% extends "template.html" %}
+
+{% block title %}PACMA {% endblock %}
+
+{% block content %}
+<div class="container">
+    <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#departmentModal">
+        + Add department
+    </button>
+
+    <table id="departmentTable" class="table">
+        <thead class="thead-dark">
+            <th>Name</th>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
+            {% for department in departments %}
+            <tr>
+                <td>{{ department.name }}</td>
+                <td class="text-center">
+                    <i class="fa fa-edit"></i>
+                </td>
+                <td class="text-center">
+                    <i class="fa fa-trash"></i>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="departmentModal" tabindex="-1" aria-labelledby="departmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{{url_for('admin.department_create_action')}}" method="POST">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="departmentModalLabel">Add Department</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="inp_department" class="form-label">Department Name</label>
+                        <input type="text" name="department" class="form-control" id="inp_department"
+                            aria-describedby="departmentHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="faculty" class="form-label">Faculty</label>
+                        <select class="form-select" aria-label="" name="faculty">
+                            {% for faculty in faculties %}
+                                <option value="{{faculty.id}}">{{faculty.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add department</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+    $(document).ready(function () {
+        $('#departmentTable').DataTable();
+    });
+</script>
+
+{% endblock %}
