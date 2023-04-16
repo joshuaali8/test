@@ -23,10 +23,10 @@
                 <td>{{ lecturer.email }}</td>
                 <td>{{ lecturer.department.name }}</td>
                 <td class="text-center">
-                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-edit" data-bs-toggle="modal" data-bs-target="#editModal{{lecturer.id}}"></i>
                 </td>
                 <td class="text-center">
-                    <i class="fa fa-trash"></i>
+                    <i class="fa fa-trash" data-bs-toggle="modal" data-bs-target="#deleteModal{{lecturer.id}}"></i>
                 </td>
             </tr>
             {% endfor %}
@@ -79,6 +79,75 @@
         </form>
     </div>
 </div>
+
+<!-- Edit Modal -->
+{% for lecturer in lecturers %}
+<div class="modal fade" id="editModal{{lecturer.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{{url_for('admin.lecturer_create_action')}}" method="POST">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit {{lecturer.full_name}}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="inp_name" class="form-label">Full Name</label>
+                        <input type="text" name="full_name" class="form-control" id="inp_name"
+                            aria-describedby="nameHelp">
+                        <div id="nameHelp" class="form-text">Enter the full name of the lecturer</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inp_email" class="form-label">Email address</label>
+                        <input type="email" name="email" class="form-control" id="inp_email"
+                            aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">Enter the UWI staff emailof the new lecturer</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="inp_pass" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="inp_pass">
+                        <div id="passwordHelp" class="form-text">Enter the temporary password for the lecturer</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="department" class="form-label">Department</label>
+                        <select class="form-select" aria-label="" name="department">
+                            {% for department in departments %}
+                            <option value="{{department.id}}">{{department.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Edit Lecturer</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endfor %}
+
+<!-- Delete Modal -->
+{% for lecturer in lecturers %}
+<div class="modal fade" id="deleteModal{{ lecturer.id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete {{ lecturer.full_name }}?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}
 
 {% block page_scripts %}

@@ -38,3 +38,13 @@ def course_create_action():
     return redirect(url_for('admin.course'))
 
 
+@admin_blueprint.route("/course/<int:course_id>", methods=["DELETE"])
+def course_delete_action(course_id):
+    # perform the deletion using the course_id
+    print(course_id)
+    course = Course.query.get(course_id)
+    db.session.delete(course)
+    db.session.commit()
+
+    # redirect back to the admin course page
+    return redirect(url_for('admin.course'))

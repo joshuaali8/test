@@ -21,10 +21,10 @@
                 <td>{{ user.full_name }}</td>
                 <td>{{ user.email }}</td>
                 <td class="text-center">
-                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-edit" data-bs-toggle="modal" data-bs-target="#editModal{{user.id}}"></i>
                 </td>
                 <td class="text-center">
-                    <i class="fa fa-trash"></i>
+                    <i class="fa fa-trash" data-bs-toggle="modal" data-bs-target="#deleteModal{{user.id}}"></i>
                 </td>
             </tr>
             {% endfor %}
@@ -68,6 +68,67 @@
         </form>
     </div>
 </div>
+
+<!-- Edit Modal -->
+{% for user in cetl_staffs %}
+<div class="modal fade" id="editModal{{user.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{{url_for('admin.cetluser_create_action')}}" method="POST">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit {{user.full_name}}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="inp_name" class="form-label">Full Name</label>
+                        <input type="text" name="full_name" class="form-control" id="inp_name"
+                            aria-describedby="nameHelp">
+                        <div id="nameHelp" class="form-text">Enter the full name of the new staff member</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inp_email" class="form-label">Email address</label>
+                        <input type="email" name="email" class="form-control" id="inp_email"
+                            aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">Enter the UWI staff emailof the new user</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inp_pass" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="inp_pass">
+                        <div id="passwordHelp" class="form-text">Enter the temporary password for the user</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Edit CETL Staff</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endfor %}
+
+<!-- Delete Modal -->
+{% for user in cetl_staffs %}
+<div class="modal fade" id="deleteModal{{ user.id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete {{ user.full_name }}?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
 {% endblock %}
 
 {% block page_scripts %}
