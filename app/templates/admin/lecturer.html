@@ -127,7 +127,7 @@
     </div>
 </div>
 {% endfor %}
-
+  
 <!-- Delete Modal -->
 {% for lecturer in lecturers %}
 <div class="modal fade" id="deleteModal{{ lecturer.id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -156,5 +156,8 @@
         $('#lecturerTable').DataTable();
     });
 </script>
+
+
+
 
 {% endblock %}
