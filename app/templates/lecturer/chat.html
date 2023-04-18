@@ -11,24 +11,12 @@
 {% block content %}
 <div class="container">
     
-    <table id="Cetl_Staff">
-        <thead>
-            <th>Name</th>
-            
-            <th>Email</th>
-            <th></th>
-            <th></th>
-        </thead>
-        <tbody>
-            {% for chat_generate in cetl_staffs %}
-            <tr>
-                <td>{{ chat_generate.full_name }}</td>
-                <td>{{ chat_generate.email }}</td>
-                
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <form id="message-form">
+        <input type="text" name="recipient" placeholder="Recipient">
+        <input type="text" name="message" placeholder="Message">
+        <button type="submit">Send</button>
+    </form>
+    
 </div>
 
     </table>
