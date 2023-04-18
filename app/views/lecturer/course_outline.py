@@ -20,6 +20,14 @@ def course_outline():
     }
     return render_template("lecturer/course-outline.html", **data)
 
+
+@lecturer_blueprint.route("/chat", methods=["GET"])
+def chat():
+    return render_template("lecturer/chat.html")
+
+
+
+
 @lecturer_blueprint.route("/course-outline", methods=["POST"])
 def course_outline_action():
     form_data = request.form

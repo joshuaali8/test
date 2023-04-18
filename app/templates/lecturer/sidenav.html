@@ -13,13 +13,19 @@
             <i class="fa fa-lg fa-tachometer pl-4 pe-2" aria-hidden="true"></i>
             <span class="d-none d-md-inline">Programme Outlines</span>
         </a>
-        
+        <a href="{{url_for('lecturer.chat')}}" class="list-group-item border-end-0 d-inline-block text-truncate  bg-light" data-bs-parent="#sidebar">
+            <i class="fa fa-lg fa-tachometer pl-4 pe-2" aria-hidden="true"></i>
+            <span class="d-none d-md-inline">Chat</span>
+        </a>
+
+
         <a href="{{url_for('login.logout_action')}}"
             class="list-group-item border-end-0 d-inline-block text-truncate  bg-light mt-auto" data-bs-parent="#sidebar">
             <i class="fa fa-lg fa-sign-out pl-4 pe-2" aria-hidden="true"></i>
             <span class="d-none d-md-inline">Logout</span>
         </a>
 
+        
         
     </div>
 </div>
