@@ -1,42 +1,18 @@
 {% extends 'template.html' %}
 
-{% block title %}
-    Chat Page
-{% endblock %}
-
-{% block page_styles %}
-    <link href="{{url_for('static', filename='css/chat.css')}}" rel="stylesheet">
-{% endblock %}
-
 {% block content %}
-<div class="container">
-    
-    <form id="message-form">
-        <input type="text" name="recipient" placeholder="Recipient">
-        <input type="text" name="message" placeholder="Message">
-        <button type="submit">Send</button>
-    </form>
-    
-</div>
+  <div id="message-history">
+    {% for message in messages %}
+      <p>{{ message.sender }} said: {{ message.content }}</p>
+    {% endfor %}
+  </div>
+  <form id="message-form">
+    <input type="text" id="recipient-input" placeholder="Recipient user ID">
+    <input type="text" id="message-input" placeholder="Type your message...">
+    <button type="submit">Send</button>
+  </form>
 
-    </table>
-            </ul>
-        </div>
-        <div class="col-md-8">
-            <h3>Chat Room</h3>
-            <div id="chat-messages">
-                <!-- Chat messages will be dynamically generated here -->
-            </div>
-            <form id="chat-form">
-                <div class="form-group">
-                    <textarea class="form-control" name="message" placeholder="Type your message here"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Send</button>
-            </form>
-        </div>
-    </div>
-{% endblock %}
-
-{% block page_scripts %}
-    <script src="{{url_for('static', filename='js/chat.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
 {% endblock %}
